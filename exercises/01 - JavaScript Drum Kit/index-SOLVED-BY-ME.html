@@ -60,7 +60,7 @@
 
   <script>
     // cache queries
-    const nodeListOfKeyElements = [].slice.call(document.querySelectorAll('.key'));
+    const nodeListOfKeyElements = document.querySelectorAll('.key');
     const nodeListOfAudioElements = document.querySelectorAll('audio');
 
     // set up animation class cleanup
@@ -72,25 +72,18 @@
       }
     ));
 
+    const findAnElementByKey = (nodeList, keyCode) => {
+      for (let i = 0, nLl = nodeList.length; i < nLl; i++) {
+        if (keyCode === parseInt(nodeList[i].getAttribute('data-key'), 10)) {
+          return nodeList[i];
+        }
+      }
+    };
+
     window.addEventListener('keydown', event => {
-      // set up variables
-      let elKey = null;
-      let elAudio = null;
-
       // find a required elements
-      for (let i = 0, nLl = nodeListOfKeyElements.length; i < nLl; i++) {
-        if (event.keyCode === parseInt(nodeListOfKeyElements[i].getAttribute('data-key'), 10)) {
-          elKey = nodeListOfKeyElements[i];
-          break;
-        }
-      }
-
-      for (let i = 0, nLl = nodeListOfAudioElements.length; i < nLl; i++) {
-        if (event.keyCode === parseInt(nodeListOfAudioElements[i].getAttribute('data-key'), 10)) {
-          elAudio = nodeListOfAudioElements[i];
-          break;
-        }
-      }
+      const elKey = findAnElementByKey(nodeListOfKeyElements, event.keyCode);
+      const elAudio = findAnElementByKey(nodeListOfAudioElements, event.keyCode);
 
       if (elKey && elAudio) {
         // show an animation
