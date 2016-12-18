@@ -1,0 +1,23 @@
+{
+  "name": "practice-javascript30",
+  "version": "1.0.0",
+  "description": "> Participating in [JavaScript30](https://javascript30.com/account) course created by @wesbos",
+  "main": "README.md",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/arturparkhisenko/practice-JavaScript30.git"
+  },
+  "author": "Artur Parkhisenko <ikeagold@gmail.com> (https://arturparkhisenko.github.io/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/arturparkhisenko/practice-JavaScript30/issues"
+  },
+  "homepage": "https://github.com/arturparkhisenko/practice-JavaScript30#readme",
+  "dependencies": {
+    "eslint": "^3.12.2",
+    "eslint-plugin-html": "^1.7.0"
+  }
+}
