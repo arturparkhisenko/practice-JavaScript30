@@ -1,6 +1,6 @@
 # practice-JavaScript30
 
-> Participating in [JavaScript30](https://javascript30.com/account) course created by @wesbos
+> Participating in [JavaScript30](https://javascript30.com) course created by @wesbos
 
 ## Table Of Contents
 
