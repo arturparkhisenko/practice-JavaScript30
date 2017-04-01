@@ -28,6 +28,23 @@
     input {
       width: 100px;
     }
+    /* variables */
+
+    html {
+      --color-base: #ffc600;
+      --spacing: 10px;
+      --blur: 10px;
+    }
+
+    img {
+      padding: var(--spacing);
+      background: var(--color-base);
+      filter: blur(var(--blur));
+    }
+
+    .hl {
+      color: var(--color-base);
+    }
   </style>
 </head>
 
@@ -36,19 +53,31 @@
 
   <div class="controls">
     <label for="spacing">Spacing:</label>
-    <input id="spacing" type="range" name="spacing" min="10" max="200" value="10" data-sizing="px">
+    <input id="spacing" type="range" min="10" max="200" value="10" data-sizing="px">
 
     <label for="blur">Blur:</label>
-    <input id="blur" type="range" name="blur" min="0" max="25" value="10" data-sizing="px">
+    <input id="blur" type="range" min="0" max="25" value="10" data-sizing="px">
 
     <label for="base">Base Color</label>
-    <input id="base" type="color" name="base" value="#ffc600">
+    <input id="color-base" type="color" value="#ffc600">
   </div>
 
   <img src="https://source.unsplash.com/7bwQXzbF6KE/800x500">
 
   <script>
-
+    const elsInputs = document.querySelectorAll('input');
+    const updateStyle = function() {
+      console.info('updated');
+      const suffix = this.dataset.sizing || '';
+      document.documentElement.style.setProperty(
+        `--${this.id}`,
+        this.value + suffix
+      );
+    };
+    for (let el of elsInputs) {
+      el.addEventListener('change', updateStyle);
+      el.addEventListener('mousemove', updateStyle);
+    }
   </script>
 
 </body>
