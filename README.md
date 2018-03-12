@@ -5,7 +5,7 @@
 ## Table Of Contents
 
 1. [x] ~~[JavaScript Drum Kit](./exercises/01\ -\ JavaScript\ Drum\ Kit/)~~
-2. [x] ~~[JS + CSS Clock](./exercises/02\ -\ JS\ +\ CSS\ Clock/)~~
+2. [x] ~~[JS and CSS Clock](./exercises/02\ -\ JS\ and\ CSS\ Clock/)~~
 3. [x] ~~[CSS Variables](./exercises/03\ -\ CSS\ Variables/)~~
 4. [x] ~~[Array Cardio, Day 1](./exercises/04\ -\ Array\ Cardio\ Day\ 1/)~~
 5. [x] ~~[Flex Panel Gallery](./exercises/05\ -\ Flex\ Panel\ Gallery/)~~
