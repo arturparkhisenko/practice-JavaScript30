@@ -1,20 +1,22 @@
 {
-  "extends": [
-    "eslint:recommended"
-  ],
-  "parserOptions": {
-    "ecmaVersion": 2018,
-    "sourceType": "module"
-  },
+  "extends": ["eslint:recommended"],
   "env": {
     "browser": true,
-    "es6": true,
+    "es6": true
   },
-  "plugins": [
-    "html"
-  ],
+  "parserOptions": {
+    "ecmaVersion": 2018,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "experimentalObjectRestSpread": true
+    }
+  },
+  "plugins": ["html"],
   "rules": {
+    "comma-dangle": ["error", "never"],
     "no-console": 0,
+    "no-param-reassign": 0,
+    "require-jsdoc": "off",
     "quotes": ["warn", "single"]
   }
 }

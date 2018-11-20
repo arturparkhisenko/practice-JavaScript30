@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Type Ahead 👀</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <form class="search-form">
+      <input
+        type="text"
+        id="search"
+        class="search"
+        placeholder="City or State"
+      />
+      <ul id="suggestions" class="suggestions">
+        <li>Filter for a city</li>
+        <li>or a state</li>
+      </ul>
+    </form>
+    <script>
+      const search = document.getElementById('search');
+      const suggestions = document.getElementById('suggestions');
+      const endpoint =
+        'https://gist.githubusercontent.com/Miserlou/c5cd8364bf9b2420bb29/raw/2bf258763cdddd704f8ffd3ea9a3e81d25e2c6f6/cities.json';
+
+      let places = [];
+
+      const findPlaces = (places, text) => {
+        let re = new RegExp(text, 'ig');
+        return places.filter(
+          ({ city, state }) =>
+            city.match(re) !== null || state.match(re) !== null
+        );
+      };
+
+      const getPlaces = url => fetch(url).then(blob => blob.json());
+
+      const hlText = text => `<span class="hl">${text}</span>`;
+
+      function renderSuggestions(element, places, value) {
+        console.log('renderSuggestions', { element, places, value });
+        element.innerHTML = places
+          .map(({ city, state, rank, population }) => {
+            let hlValue = hlText(value);
+            let re = new RegExp(value, 'ig');
+            let nameContent = `${city.replace(re, hlValue)}, ${state.replace(
+              re,
+              hlValue
+            )}`;
+            let populationContent = `${population.toLocaleString()}, #${rank}`;
+
+            return `
+                          <li>
+                            <span class="name">${nameContent}</span>
+                            <span class="population">${populationContent}</span>
+                          </li>
+                        `;
+          })
+          .join('');
+      }
+
+      function searchQueryDidChange({ target }) {
+        let { value } = target;
+        console.log('searchQueryDidChange, value: ', value);
+        renderSuggestions(suggestions, findPlaces(places, value), value);
+      }
+
+      getPlaces(endpoint).then(data => {
+        places = data;
+        console.log({ places });
+      });
+
+      search.addEventListener('change', searchQueryDidChange);
+      search.addEventListener('keyup', searchQueryDidChange);
+    </script>
+  </body>
+</html>
